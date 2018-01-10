@@ -32,7 +32,7 @@ class App extends React.Component {
       }
     }).then(res => {
       console.log(res)
-    });
+    }); 
   }
     render() {
       return (
