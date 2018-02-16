@@ -19,36 +19,27 @@ function runRequest() {
       xmlToJSON: false
     }
   }).then((result) => {
-      let hello = result.data.results.map(res=>{
-        res.lexicalEntries.map(res=>{
-          res.entries.map(res=>{
-            res.senses.map(res=>{
-              res.synonyms.map(res=>{
-                return res.id;
+       const synonym = result.data.results.map(res=>{
+         return res.lexicalEntries.map(secondResult=>{
+           return secondResult.entries.map(thirdResult=>{
+               return thirdResult.senses.map(fourthRes=>{
+                 return fourthRes.synonyms.map(fifthRes=>{
+                  turnArray(fifthRes.id)
+                  return fifthRes.id;
               })
             })
           })
         })
-      });
-      console.log(hello)
-// return res
-//     });
-//     let hello = result.data.results[0].lexicalEntries[0].entries[0].senses[0].synonyms.map(res => {
-// return res
-//     });
-//     hello = hello.map(res=>{
-//       return res.id
-//     })
-
-//     for (let value in hello) {
-//       console.log(hello[value])
-//     }
-
-    return result;
+      });  
   })
     .catch((error) => {
       swal("Oops!", "This is not a levidrome as one of the words in not valid.", "error");
     });
+}
+const arrays = [];
+function turnArray(list) {
+  arrays.push(list)
+  console.log(arrays)
 }
 
 runRequest();
