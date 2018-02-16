@@ -4,3 +4,4 @@
 2. `npm install`
 3. enjoy!
 # Boozipe
+# Throwaway
