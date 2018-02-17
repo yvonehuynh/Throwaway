@@ -14,13 +14,7 @@ function runRequest() {
     }
   }).then((result) => {
     const res = result.data;
-    const randomItem = res[Math.floor(Math.random() * res.length)];
-    const randomItemtoString = randomItem.split(" ");
-    const randomWord = randomItemtoString[Math.floor(Math.random() * randomItemtoString.length)]
-    const secondWord = randomItemtoString[Math.floor(Math.random() * randomItemtoString.length)]
-    const randomNum = Math.floor(Math.random()*1000)
-    const array = randomWord + secondWord + randomNum;
-    console.log(array)
+    getUserName(res);
   })
     .catch((error) => {
       swal("Oops!", "This is not a levidrome as one of the words in not valid.", "error");
@@ -28,3 +22,15 @@ function runRequest() {
 }
 
 runRequest();
+
+// function that takes the API data and turns it into a random username
+const getUserName=(res)=>{
+  const randomItem = res[Math.floor(Math.random() * res.length)];
+  const randomItemtoString = randomItem.split(" ");
+  const randomWord = randomItemtoString[Math.floor(Math.random() * randomItemtoString.length)]
+  const secondWord = randomItemtoString[Math.floor(Math.random() * randomItemtoString.length)]
+  const randomNum = Math.floor(Math.random() * 1000)
+  let array = randomWord + secondWord + randomNum;
+  array.replace(/.,/, "")
+  console.log(array)
+}
