@@ -13,20 +13,17 @@ function runRequest() {
       xmlToJSON: false
     }
   }).then((result) => {
-      const res = result.data;
-      return res
-      getUserName(res);
-      getPassword(res); 
+    const res = result.data;
+    getUserName(res);
+    getPassword(res);
   })
     .catch((error) => {
       alert("Oops!");
     });
 }
 
-runRequest();
-
 // function that takes the API data and turns it into a random username
-const getUserName=(res)=>{
+const getUserName = (res) => {
   // get random array from API results (API results return different arrays)
   const randomItem = res[Math.floor(Math.random() * res.length)];
   // turn words in the sentence to separate strings in an array
@@ -39,26 +36,31 @@ const getUserName=(res)=>{
   const randomNum = Math.floor(Math.random() * 1000)
   // combine first word, second word, and random number to create random username
   let array = randomWord + secondWord + randomNum;
-  array.replace(/.,/, "")
+  array.replace(/.,/, "");
+  let para = document.getElementById("username");
+  para.innerHTML = array;
+  console.log("username: ", para)
   return array;
- // console.log(array)
 }
 
 // function to generate randomized password
-const getPassword=(res)=>{
+const getPassword = (res) => {
   let password = getUserName(res);
   // take word and make first letter to uppercase
   password.charAt(0).toUpperCase() + password.slice(1)
   let specialChar = '!?=#*$@+-.';
-  const index = Math.floor(Math.random()* specialChar.length)
+  const index = Math.floor(Math.random() * specialChar.length)
   // get random specialChar
   specialChar = specialChar[index]
   // add specialChar to new password
-  password = password+specialChar
+  password = password + specialChar
   // if password is less than 8 characters, rerun function
   if (password.length < 8) {
     getPassword()
   } else {
+    console.log("password: ", password)
     return password;
   }
 }
+
+runRequest();

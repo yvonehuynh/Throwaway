@@ -7,7 +7,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<div id="app">
+	<div id="wrapper">
+		<header>
+			<h1>Throwaway</h1>
+			<p>Generate a throwaway account (and a password too!) using this nifty tool.</p>
+			<p>Not Vegan Friendly</p>
+		</header>
+		<main>
+			<p>Click on the button generate your meaty username</p>
+			<button id="generateUsername">Get Username</button>
+
+			<h2>Your New Username</h2>
+			<p id="username"></p>
+		</main>
 	</div>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="./public/scripts/app.js"></script>
