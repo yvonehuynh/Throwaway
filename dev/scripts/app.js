@@ -95,14 +95,15 @@ document.getElementById("save").addEventListener("click", function(e){
   }
   const dbRef = firebase.database().ref();
   dbRef.push(throwawayDetails)
+  window.location.reload(true)
 })
 
 displayFav();
 function displayFav(){
   const dbRef = firebase.database().ref();
 
+  let accounts = [];
   dbRef.on("value", (firebaseData) => {
-    let accounts = [];
     const accountData = firebaseData.val();
     for (let itemKey in accountData) {
       accountData[itemKey].key = itemKey;
@@ -111,9 +112,9 @@ function displayFav(){
       const password = accountData[itemKey]["password"];
       let user = accountData[itemKey]["username"];
       document.getElementById('displayUsername').innerHTML += `<li> Username: ${user} Passord: ${password}</li>`;
-
      // console.log("user: ", user, "password: ", password)
-      
+      // document.getElementById("displayUsername").innerHTML += accountData[itemKey]["username"];
+
     }
   });
 
