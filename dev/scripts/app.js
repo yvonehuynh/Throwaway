@@ -107,9 +107,13 @@ function displayFav(){
     for (let itemKey in accountData) {
       accountData[itemKey].key = itemKey;
       accounts.push(accountData[itemKey])
+
       const password = accountData[itemKey]["password"];
-      const user = accountData[itemKey]["username"];
-      console.log("user: ", user, "password: ", password)
+      let user = accountData[itemKey]["username"];
+      document.getElementById('displayUsername').innerHTML += `<li> Username: ${user} Passord: ${password}</li>`;
+
+     // console.log("user: ", user, "password: ", password)
+      
     }
   });
 
