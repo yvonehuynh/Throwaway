@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>React Boilerplate</title>
+	<title>Throwaway Account</title>
 	<link rel="stylesheet" type="text/css" href="./public/styles/style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -22,9 +22,16 @@
 
 			<h2>Your New Password</h2>
 			<p id="password"></p>
+			<button id="save">save</button>
 		</main>
+
+		<section>
+			<p id="displayUsername"></p>
+			<p id="displayPassword"></p>
+		</section>
 	</div>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
 	<script src="./public/scripts/app.js"></script>
 </body>
 </html>
