@@ -1,0 +1,7 @@
+
+
+input[type=checkbox]:checked + aside {
+        position: relative;
+        z-index: 1;
+        right: 0;
+    }

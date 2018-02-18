@@ -2,6 +2,7 @@
 @import "./partials/header";
 @import "./partials/results";
 @import "./partials/aside";
+@import "./partials/nav";
 
 // GLOBAL STYLES
 
@@ -24,4 +25,8 @@ h1 {
     border-bottom: 10px solid white;
     display: inline-block;
     width: 23%;
+}
+
+h2 {
+    text-align: center;
 }

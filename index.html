@@ -8,6 +8,16 @@
 </head>
 <body>
 	<div id="wrapper">
+		<nav>
+			<label for="saved-accounts">Saved Accounts</label>
+			<input type="checkbox" id="saved-accounts">
+			<aside>
+				<h2>Saved Accounts</h2>
+				<div id="displayUsername">
+		
+				</div>
+			</aside>
+		</nav>
 		<header>
 			<h1>Throwaway</h1>
 			<p class="app-description">Generate a throwaway account (and a password too!) using this nifty tool.</p>
@@ -31,12 +41,6 @@
 			<button id="save">save</button>
 		</main>
 
-		<aside>
-			<h2>Saved Accounts</h2>
-			<div id="displayUsername">
-	
-			</div>
-		</aside>
 	</div>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
