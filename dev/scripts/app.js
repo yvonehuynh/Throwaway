@@ -12,18 +12,19 @@ var config = {
 firebase.initializeApp(config);
 
 function runRequest() {
-  return axios({
-    method: 'GET',
-    url: 'https://proxy.hackeryou.com',
-    dataResponse: 'json',
-    paramsSerializer: function (params) {
-      return Qs.stringify(params, { arrayFormat: 'brackets' })
-    },
-    params: {
-      reqUrl: `https://baconipsum.com/api/?type=all-meat&sentences=10&start-with-lorem=1`,
-      xmlToJSON: false
-    }
-  }).then((result) => {
+  return axios.get(`https://baconipsum.com/api/?type=all-meat&sentences=10&start-with-lorem=1`)
+  // return axios({
+  //   method: 'GET',
+  //   url: 'https://proxy.hackeryou.com',
+  //   dataResponse: 'json',
+  //   paramsSerializer: function (params) {
+  //     return Qs.stringify(params, { arrayFormat: 'brackets' })
+  //   },
+  //   params: {
+  //     reqUrl: `https://baconipsum.com/api/?type=all-meat&sentences=10&start-with-lorem=1`,
+  //     xmlToJSON: false
+  //   }
+  .then((result) => {
     const res = result.data;
     getUserName(res);
     getPassword(res);

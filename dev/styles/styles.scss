@@ -3,6 +3,8 @@
 @import "./partials/results";
 @import "./partials/aside";
 @import "./partials/nav";
+@import "./partials/footer";
+@import "./partials/button";
 
 // GLOBAL STYLES
 
@@ -28,5 +30,7 @@ h1 {
 }
 
 h2 {
+    font-size: 3rem;
     text-align: center;
+    margin: 0;
 }

@@ -1,9 +1,9 @@
 aside {
-    background: pink;
+    background: lightgrey;
     width: 40%;
     padding: 10px;
-    position: relative;
-    right: 285px;
+    position: absolute;
+    left: -485px;
     z-index: 1;
     transition: all 0.4s ease;
     .saved-account {
