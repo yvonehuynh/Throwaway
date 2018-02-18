@@ -40,7 +40,6 @@ const getUserName = (res) => {
   array = array.replace(/,/, "");
   let para = document.getElementById("username");
   para.innerHTML = array;
-  console.log("username: ", array);
   return array;
 }
 
@@ -57,7 +56,6 @@ const getPassword = (res) => {
   } else {
     let para = document.getElementById("password");
     para.innerHTML = password;
-    console.log("password: ", password)
     return password
   }
 }
@@ -95,27 +93,50 @@ document.getElementById("save").addEventListener("click", function(e){
   }
   const dbRef = firebase.database().ref();
   dbRef.push(throwawayDetails)
-  window.location.reload(true)
+ // window.location.reload(true)
 })
 
-displayFav();
-function displayFav(){
+function displayFav() {
   const dbRef = firebase.database().ref();
-
-  let accounts = [];
   dbRef.on("value", (firebaseData) => {
-    const accountData = firebaseData.val();
-    for (let itemKey in accountData) {
-      accountData[itemKey].key = itemKey;
-      accounts.push(accountData[itemKey])
+    document.getElementById("displayUsername").innerHTML = "";
+    firebaseData.forEach(function (childSnapshot) {
+      var childKey = childSnapshot.key;
+      var childData = childSnapshot.val();
+      document.getElementById("displayUsername").innerHTML +=
+        `<li>Password: ${childData["password"]}, Username: ${childData["username"]}</li> 
+        <p id=${childKey}>Remove</p>
+        `
+      ;
+    });
+    // document.getElementById("displayUsername").innerHTML = "";
+    // let accounts = [];
+    // const accountData = firebaseData.val();
 
-      const password = accountData[itemKey]["password"];
-      let user = accountData[itemKey]["username"];
-      document.getElementById('displayUsername').innerHTML += `<li> Username: ${user} Passord: ${password}</li>`;
-     // console.log("user: ", user, "password: ", password)
-      // document.getElementById("displayUsername").innerHTML += accountData[itemKey]["username"];
+    // for (let itemKey in accountData) {
+    //   accountData[itemKey].key = itemKey;
+    //   accounts.push(accountData[itemKey])
 
-    }
+
+
+      // const key = accountData[itemKey]["key"];
+      // const password = accountData[itemKey]["password"];
+      // let user = accountData[itemKey]["username"];
+      // //console.log('key: ' + key);
+      // const hello = document.getElementById('displayUsername').innerHTML += `
+      // <li> Username: ${user} Password: ${password}</li>
+      // <p id=${key}>Remove</p>
+      // `;
+
+    //   (function (superkey) {
+    //     document.getElementById(superkey).addEventListener("click", function () {
+    //       console.log('click : ' + superkey)
+    //       removeItem(superkey)
+    //     })
+    //   })(key);
+
+    // }
   });
-
 }
+
+displayFav();
