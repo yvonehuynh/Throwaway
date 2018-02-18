@@ -1,0 +1,27 @@
+@import "./partials/setup";
+@import "./partials/header";
+@import "./partials/results";
+@import "./partials/aside";
+
+// GLOBAL STYLES
+
+html {
+    font-size: 62.5%;
+}
+
+// WRAPPER
+.wrapper {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+// TYPOGRAPHY
+h1 {
+    font-size: 5rem;
+    color: white;
+    margin: 0;
+    border-bottom: 10px solid white;
+    display: inline-block;
+    width: 23%;
+}

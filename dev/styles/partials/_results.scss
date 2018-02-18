@@ -1,0 +1,30 @@
+main {
+    background: orange;
+    padding: 10px;
+    text-align: center;
+}
+
+#username,#password {
+    display: inline-block;
+    width: 220px;
+    height: 40px;
+    background: white;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.results {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    margin: 0 auto;
+    .result-area {
+        margin: 10px;
+        width: 30%;
+    }
+}

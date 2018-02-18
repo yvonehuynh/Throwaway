@@ -10,25 +10,33 @@
 	<div id="wrapper">
 		<header>
 			<h1>Throwaway</h1>
-			<p>Generate a throwaway account (and a password too!) using this nifty tool.</p>
-			<p>Not Vegan Friendly</p>
+			<p class="app-description">Generate a throwaway account (and a password too!) using this nifty tool.</p>
+			<p class="app-description">Not Vegan Friendly</p>
 		</header>
 		<main>
-			<p>Click on the button generate your meaty username</p>
-			<button id="generateUsername">Get Username</button>
+			<div class="results">
+				<div class="result-area">
+					<h2>Your New Username</h2>
+					<p id="username"></p>
+				</div>
 
-			<h2>Your New Username</h2>
-			<p id="username"></p>
+				<div class="result-area">
+					<h2>Your New Password</h2>
+					<p id="password"></p>
+				</div>
+			</div>
+			
+			<button id="generateUsername">Generate my throwaway account</button>
 
-			<h2>Your New Password</h2>
-			<p id="password"></p>
 			<button id="save">save</button>
 		</main>
 
-		<section>
+		<aside>
 			<h2>Saved Accounts</h2>
-			<ol id="displayUsername"></ol>
-		</section>
+			<div id="displayUsername">
+	
+			</div>
+		</aside>
 	</div>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
