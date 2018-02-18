@@ -97,16 +97,17 @@ document.getElementById("save").addEventListener("click", function(e){
 })
 
 function displayFav() {
-  const dbRef = firebase.database().ref();
+  const dbRef = firebase.database().ref().limitToLast(5);
   dbRef.on("value", (firebaseData) => {
     document.getElementById("displayUsername").innerHTML = "";
     firebaseData.forEach(function (childSnapshot) {
       var childKey = childSnapshot.key;
       var childData = childSnapshot.val();
       document.getElementById("displayUsername").innerHTML +=
-        `<li>Password: ${childData["password"]}, Username: ${childData["username"]}</li> 
-        <p id=${childKey}>Remove</p>
-        `
+        `<div class="saved-account">
+        <li>Username: ${childData["username"]} Password: ${childData["password"]}</li> 
+        </div>`
+        
       ;
     });
     // document.getElementById("displayUsername").innerHTML = "";
