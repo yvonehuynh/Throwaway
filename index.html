@@ -22,6 +22,44 @@
 				</div>
 			</aside>
 		</nav>
+
+		<!-- Login and Sign Up Modal -->
+		<!-- <div className="loginModal modal">
+		
+			<form action="">
+				<label htmlFor="email">email</label>
+				<input type="email" name="email" ref={ref=> this.userEmail = ref}/>
+				<label htmlFor="password">password</label>
+				<input type="password" name="password" ref={ref=> this.userPassword = ref}/>
+				<input type="submit" value="Login" />
+				<button>close</button>
+			</form>
+		</div> -->
+		
+		<div className="overlay">
+			<div className="createUserModal modal">
+				<form action="">
+					<div>
+						<label htmlFor="createEmail">email</label>
+						<input type="email" name="createEmail" id="email"/>
+					</div>
+					<div>
+						<label htmlFor="createPassword">password</label>
+						<input type="password" name="createPassword" id="create-password"/>
+					</div>
+					<div>
+						<label htmlFor="confirmPassword">confirm Password</label>
+						<input type="password" name="confirmPassword" id="confirm-password"/>
+					</div>
+					<div>
+						<input type="Submit" value="create" id="create-user"/>
+						<button>close</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<!-- End Login and Sign Up Modal -->
 		<header>
 			<h1>Throwaway <i class="fas fa-user-secret"></i></h1>
 			<p class="app-description">Generate a throwaway account using this nifty tool.</p>
@@ -49,7 +87,26 @@
 
 	</div>
 	<footer>
-		<p>yvonecodesit.ca</p>
+		<div class="icon-container">
+			<a href="https://twitter.com/yvonecodesit">
+				<i class="fab fa-twitter">
+					<span class="sr-only">Twitter</span>
+				</i>
+			</a>
+			<a href="https://github.com/yvonehuynh">
+				<i class="fab fa-github">
+					<span class="sr-only">Github</span>
+				</i>
+			</a>
+			<a href="http://yvonecodesit.ca/">
+				<i class="fa fa-user" aria-hidden="true">
+					<span class="sr-only">Portfolio</span>
+				</i>
+			</a>
+		</div>
+		<div>
+			<p>Created By: Yvone Huynh 2018</p>
+		</div>
 	</footer>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>

@@ -5,6 +5,7 @@
 @import "./partials/nav";
 @import "./partials/footer";
 @import "./partials/button";
+@import "./partials/auth";
 
 // GLOBAL STYLES
 
@@ -47,4 +48,16 @@ label {
 
 span {
     margin: 0 3px;
+}
+
+// LINKS
+a {
+    display: inline-block;
+    margin: 0 5px;
+}
+a, a:visited, a:active {
+    color: black;
+    &:hover {
+        color: white;
+    }
 }

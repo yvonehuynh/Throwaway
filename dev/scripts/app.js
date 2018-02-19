@@ -114,3 +114,25 @@ document.getElementById('label').onclick = function () {
   this.classList.toggle('colored');
 }
 
+// authentication
+
+
+// const newUserEmail = document.getElementById("email").value;
+// console.log(newUserEmail);
+
+document.getElementById("create-user").addEventListener("click", function(e){
+  e.preventDefault();
+  const newUserEmail = document.getElementById("email").value;
+  const newUserPassword = document.getElementById("create-password").value;
+  console.log(newUserEmail);
+  console.log(newUserPassword);
+  firebase.auth().createUserWithEmailAndPassword(newUserEmail, newUserPassword)
+  .then(function(){
+    console.log("i am signed")
+  })
+  .catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
+})

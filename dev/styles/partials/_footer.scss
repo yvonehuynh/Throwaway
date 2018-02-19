@@ -1,6 +1,11 @@
 footer {
+    padding: 0 10px;
     background: lightgrey;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
     p {
-        margin: 0;
+        text-align: left;
+        display: inline;
     }
 }
