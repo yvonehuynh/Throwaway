@@ -4,7 +4,8 @@ aside {
     width: 20%;
     padding: 10px;
     position: absolute;
-    right: -600px;
+    opacity: 0;
+    right: 0;
     z-index: 1;
     transition: all 0.4s ease;
     .account-list { 
