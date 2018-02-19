@@ -115,11 +115,6 @@ document.getElementById('label').onclick = function () {
 }
 
 // authentication
-
-
-// const newUserEmail = document.getElementById("email").value;
-// console.log(newUserEmail);
-
 document.getElementById("create-user").addEventListener("click", function(e){
   e.preventDefault();
   const newUserEmail = document.getElementById("email").value;
@@ -128,6 +123,7 @@ document.getElementById("create-user").addEventListener("click", function(e){
   console.log(newUserPassword);
   firebase.auth().createUserWithEmailAndPassword(newUserEmail, newUserPassword)
   .then(function(){
+    allowSave();
     console.log("i am signed")
   })
   .catch(function (error) {
@@ -136,3 +132,31 @@ document.getElementById("create-user").addEventListener("click", function(e){
     var errorMessage = error.message;
   });
 })
+
+// sign in
+document.getElementById("login").addEventListener("click", function (e) {
+  e.preventDefault();
+  const currentUserEmail = document.getElementById("current-email").value;
+  const currentUserPassword = document.getElementById("current-password").value;
+  console.log(currentUserEmail);
+  console.log(currentUserPassword);
+  firebase.auth().signInWithEmailAndPassword(currentUserEmail, currentUserPassword)
+    .then(function () {
+      allowSave();
+      console.log("i am signed")
+    })
+    .catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+    });
+})
+
+
+// function to show user features upon being logged in or signed up
+function allowSave(){
+  const saveAccount = document.getElementById("save");
+  const savedAccountLabel = document.getElementById("label");
+  saveAccount.style.display = "block";
+  savedAccountLabel.style.display = "block";
+}
