@@ -119,6 +119,8 @@ document.getElementById("create-user").addEventListener("click", function(e){
   e.preventDefault();
   const newUserEmail = document.getElementById("email").value;
   const newUserPassword = document.getElementById("create-password").value;
+  const confirmPassword = document.getElementById("confirm-password").value;
+  if (newUserPassword === confirmPassword) {
   firebase.auth().createUserWithEmailAndPassword(newUserEmail, newUserPassword)
   .then(function(){
     allowSave();
@@ -128,7 +130,10 @@ document.getElementById("create-user").addEventListener("click", function(e){
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-  });
+  })
+  } else {
+      alert("passwords must match")
+    };
 })
 
 // sign in
