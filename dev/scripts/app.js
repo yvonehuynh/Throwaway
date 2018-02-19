@@ -160,7 +160,14 @@ function allowSave(){
   const savedAccountLabel = document.getElementById("label");
   saveAccount.style.display = "block";
   savedAccountLabel.style.display = "block";
-}
+};
+
+function disableSave() {
+  const saveAccount = document.getElementById("save");
+  const savedAccountLabel = document.getElementById("label");
+  saveAccount.style.display = "none";
+  savedAccountLabel.style.display = "none";
+};
 
 // user can use the webpage without account
 // if user wants added features, must sign in or sign up
@@ -176,3 +183,8 @@ toggleLogin();
 const toggleDisplay = ()=>{
   document.querySelector('.authentication').classList.toggle('showMe');
 }
+
+  document.getElementById("sign-out").addEventListener("click", function(){
+    firebase.auth().signOut();
+    disableSave();
+  });
