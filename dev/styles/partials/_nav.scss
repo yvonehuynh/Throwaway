@@ -1,4 +1,4 @@
-input[type=checkbox]:checked + aside {
+input[type=checkbox]:checked ~ aside {
         right: 0;
         position: fixed;
         opacity: 1;
@@ -17,7 +17,7 @@ nav {
     display: none;
 }
 
-#user-account, #sign-out {
+#user-account, #sign-out, #dev-hub {
     display: inline-block;
     color: white;
     cursor: pointer;
@@ -27,7 +27,7 @@ nav {
     }
 }
 
-#user-account, #sign-out, #label {
+#user-account, #sign-out, #label, #dev-hub {
     margin: 10px;
 }
 
