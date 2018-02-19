@@ -89,8 +89,17 @@ function displayFav() {
       var childKey = childSnapshot.key;
       var childData = childSnapshot.val();
       document.getElementById("displayUsername").innerHTML +=
-        `<div class="saved-account">
-        <li>Username: ${childData["username"]} Password: ${childData["password"]}</li> 
+        `<div class="account-list">
+          <p>Username: 
+            <span>
+              ${childData["username"]}
+            </span>
+          </p> 
+          <p>Password: 
+            <span>
+              ${childData["password"]}
+            </span>
+          </p>
         </div>`
       ;
     });
