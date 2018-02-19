@@ -8,6 +8,8 @@ var config = {
 };
 firebase.initializeApp(config);
 
+const userAccount = signIn();
+
 function runRequest() {
   return axios.get(`https://baconipsum.com/api/?type=all-meat&sentences=10&start-with-lorem=1`)
   .then((result) => {
@@ -77,12 +79,12 @@ document.getElementById("save").addEventListener("click", function(e){
     username,
     password
   }
-  const dbRef = firebase.database().ref();
+  const dbRef = firebase.database().ref(`user/${userAccount}/`);
   dbRef.push(throwawayDetails)
 })
 
 function displayFav() {
-  const dbRef = firebase.database().ref().limitToLast(5);
+  const dbRef = firebase.database().ref(`user/${userAccount}/`).limitToLast(5);
   dbRef.on("value", (firebaseData) => {
     document.getElementById("displayUsername").innerHTML = "";
     firebaseData.forEach(function (childSnapshot) {
@@ -114,6 +116,7 @@ document.getElementById('label').onclick = function () {
   this.classList.toggle('colored');
 }
 
+
 // authentication
 document.getElementById("create-user").addEventListener("click", function(e){
   e.preventDefault();
@@ -137,22 +140,31 @@ document.getElementById("create-user").addEventListener("click", function(e){
 })
 
 // sign in
-document.getElementById("login").addEventListener("click", function (e) {
-  e.preventDefault();
-  const currentUserEmail = document.getElementById("current-email").value;
-  const currentUserPassword = document.getElementById("current-password").value;
-  firebase.auth().signInWithEmailAndPassword(currentUserEmail, currentUserPassword)
-  .then(function () {
-    allowSave();
-    toggleDisplay();
-  })
-  .catch(function (error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-  });
-})
+function signIn(){
+  document.getElementById("login").addEventListener("click", function (e) {
+    e.preventDefault();
+    const currentUserEmail = document.getElementById("current-email").value;
+    const currentUserPassword = document.getElementById("current-password").value;
+    firebase.auth().signInWithEmailAndPassword(currentUserEmail, currentUserPassword)
+    .then(function () {
+      allowSave();
+      toggleDisplay();
+    })
+    .catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+    });
+    var user = firebase.auth().currentUser;
 
+    if (user) {
+      return user
+    } else {
+      // No user is signed in.
+    }
+  })
+};
+// signIn();
 
 // function to show user features upon being logged in or signed up
 function allowSave(){
@@ -182,7 +194,8 @@ toggleLogin();
 
 const toggleDisplay = ()=>{
   document.querySelector('.authentication').classList.toggle('showMe');
-}
+};
+
 
   document.getElementById("sign-out").addEventListener("click", function(){
     firebase.auth().signOut();
