@@ -119,12 +119,10 @@ document.getElementById("create-user").addEventListener("click", function(e){
   e.preventDefault();
   const newUserEmail = document.getElementById("email").value;
   const newUserPassword = document.getElementById("create-password").value;
-  console.log(newUserEmail);
-  console.log(newUserPassword);
   firebase.auth().createUserWithEmailAndPassword(newUserEmail, newUserPassword)
   .then(function(){
     allowSave();
-    console.log("i am signed")
+    toggleDisplay();
   })
   .catch(function (error) {
     // Handle Errors here.
@@ -138,18 +136,16 @@ document.getElementById("login").addEventListener("click", function (e) {
   e.preventDefault();
   const currentUserEmail = document.getElementById("current-email").value;
   const currentUserPassword = document.getElementById("current-password").value;
-  console.log(currentUserEmail);
-  console.log(currentUserPassword);
   firebase.auth().signInWithEmailAndPassword(currentUserEmail, currentUserPassword)
-    .then(function () {
-      allowSave();
-      console.log("i am signed")
-    })
-    .catch(function (error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-    });
+  .then(function () {
+    allowSave();
+    toggleDisplay();
+  })
+  .catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
 })
 
 
@@ -159,4 +155,19 @@ function allowSave(){
   const savedAccountLabel = document.getElementById("label");
   saveAccount.style.display = "block";
   savedAccountLabel.style.display = "block";
+}
+
+// user can use the webpage without account
+// if user wants added features, must sign in or sign up
+// create button that allows users to sign in or up
+
+function toggleLogin(){
+  document.getElementById('user-account').onclick = function () {
+    document.querySelector('.authentication').classList.toggle('showMe');
+  };
+};
+toggleLogin();
+
+const toggleDisplay = ()=>{
+  document.querySelector('.authentication').classList.toggle('showMe');
 }

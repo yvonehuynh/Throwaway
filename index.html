@@ -11,6 +11,7 @@
 <body>
 	<div id="wrapper">
 		<nav>
+			<a id="user-account">user account</a>
 			<label for="saved-accounts" id="label">Saved Accounts <span><i class="fas fa-bookmark"></i></span></label>
 			<input type="checkbox" id="saved-accounts">
 			<aside>
@@ -21,42 +22,32 @@
 		
 				</div>
 			</aside>
+
 		</nav>
 
 		<!-- Login and Sign Up Modal -->
-		<div className="loginModal modal">
+		<div class="authentication">
+			<div class="user-form">
+			<form action="">
+				Login
+					<label htmlFor="email">email</label>
+					<input type="email" name="email" id="current-email"/>
+					<label htmlFor="password">password</label>
+					<input type="password" name="password" id="current-password"/>
+					<input type="submit" value="Login" id="login"/>
+			</form>
 		
 			<form action="">
-				<label htmlFor="email">email</label>
-				<input type="email" name="email" id="current-email"/>
-				<label htmlFor="password">password</label>
-				<input type="password" name="password" id="current-password"/>
-				<input type="submit" value="Login" id="login"/>
-				<button>close</button>
+				Sign Up
+					<label htmlFor="createEmail">email</label>
+					<input type="email" name="createEmail" id="email"/>
+					<label htmlFor="createPassword">password</label>
+					<input type="password" name="createPassword" id="create-password"/>
+					<label htmlFor="confirmPassword">confirm Password</label>
+					<input type="password" name="confirmPassword" id="confirm-password"/>
+					<input type="Submit" value="create" id="create-user"/>
 			</form>
 		</div>
-		
-		<div className="overlay">
-			<div className="createUserModal modal">
-				<form action="">
-					<div>
-						<label htmlFor="createEmail">email</label>
-						<input type="email" name="createEmail" id="email"/>
-					</div>
-					<div>
-						<label htmlFor="createPassword">password</label>
-						<input type="password" name="createPassword" id="create-password"/>
-					</div>
-					<div>
-						<label htmlFor="confirmPassword">confirm Password</label>
-						<input type="password" name="confirmPassword" id="confirm-password"/>
-					</div>
-					<div>
-						<input type="Submit" value="create" id="create-user"/>
-						<button>close</button>
-					</div>
-				</form>
-			</div>
 		</div>
 
 		<!-- End Login and Sign Up Modal -->
