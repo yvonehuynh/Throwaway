@@ -1,6 +1,3 @@
-var Qs = require('qs');
-// const firebase = require("./firebase");
-
 var config = {
   apiKey: "AIzaSyDyr5ZdZEHyHb5bofD0TZdO_fiU49MxO-0",
   authDomain: "throwaway-39c5b.firebaseapp.com",
@@ -13,17 +10,6 @@ firebase.initializeApp(config);
 
 function runRequest() {
   return axios.get(`https://baconipsum.com/api/?type=all-meat&sentences=10&start-with-lorem=1`)
-  // return axios({
-  //   method: 'GET',
-  //   url: 'https://proxy.hackeryou.com',
-  //   dataResponse: 'json',
-  //   paramsSerializer: function (params) {
-  //     return Qs.stringify(params, { arrayFormat: 'brackets' })
-  //   },
-  //   params: {
-  //     reqUrl: `https://baconipsum.com/api/?type=all-meat&sentences=10&start-with-lorem=1`,
-  //     xmlToJSON: false
-  //   }
   .then((result) => {
     const res = result.data;
     getUserName(res);
@@ -85,7 +71,6 @@ document.getElementById("generateUsername").addEventListener("click", function(e
 
 document.getElementById("save").addEventListener("click", function(e){
   e.preventDefault();
- // console.log("boomboom: ", username, "password: ", password);
  const username = document.getElementById("username").innerHTML;
  const password = document.getElementById("password").innerHTML;
   const throwawayDetails={
@@ -94,7 +79,6 @@ document.getElementById("save").addEventListener("click", function(e){
   }
   const dbRef = firebase.database().ref();
   dbRef.push(throwawayDetails)
- // window.location.reload(true)
 })
 
 function displayFav() {
@@ -108,37 +92,16 @@ function displayFav() {
         `<div class="saved-account">
         <li>Username: ${childData["username"]} Password: ${childData["password"]}</li> 
         </div>`
-        
       ;
     });
-    // document.getElementById("displayUsername").innerHTML = "";
-    // let accounts = [];
-    // const accountData = firebaseData.val();
-
-    // for (let itemKey in accountData) {
-    //   accountData[itemKey].key = itemKey;
-    //   accounts.push(accountData[itemKey])
-
-
-
-      // const key = accountData[itemKey]["key"];
-      // const password = accountData[itemKey]["password"];
-      // let user = accountData[itemKey]["username"];
-      // //console.log('key: ' + key);
-      // const hello = document.getElementById('displayUsername').innerHTML += `
-      // <li> Username: ${user} Password: ${password}</li>
-      // <p id=${key}>Remove</p>
-      // `;
-
-    //   (function (superkey) {
-    //     document.getElementById(superkey).addEventListener("click", function () {
-    //       console.log('click : ' + superkey)
-    //       removeItem(superkey)
-    //     })
-    //   })(key);
-
-    // }
   });
 }
 
 displayFav();
+
+// when user opens saved accounts aside, turn label colour orange
+// else, leave it white
+document.getElementById('label').onclick = function () {
+  this.classList.toggle('colored');
+}
+

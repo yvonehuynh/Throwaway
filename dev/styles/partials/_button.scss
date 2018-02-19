@@ -1,7 +1,20 @@
-button {
-    color: white;
-    background: black;
-    height: 35px;
-    width: 300px;
-    font-size: 1.8rem;
+
+.action-buttons {
+    width: 70%;
+    margin: 10px auto;
+    button {
+        color: white;
+        background: black;
+        height: 35px;
+        width: 300px;
+        font-size: 1.8rem;
+        display: block;
+        text-align: center;
+        margin: 10px auto;
+        &:hover {
+            background: darken($color: orange, $amount: 10);
+            color: white;
+            border: 1px solid black;
+        }
+    }
 }

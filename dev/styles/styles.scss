@@ -17,6 +17,7 @@ html {
     width: 90%;
     margin: 0 auto;
     text-align: center;
+    position: relative;
 }
 
 // TYPOGRAPHY
@@ -26,11 +27,24 @@ h1 {
     margin: 0;
     border-bottom: 10px solid white;
     display: inline-block;
-    width: 23%;
+    width: 37%;
 }
 
 h2 {
     font-size: 3rem;
     text-align: center;
     margin: 0;
+}
+
+label {
+    color: white;
+    cursor: pointer;
+    font-size: 1.8rem;
+    &:hover {
+        color: orange;
+    }
+}
+
+span {
+    margin: 0 3px;
 }
