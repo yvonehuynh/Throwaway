@@ -26,3 +26,11 @@ describe("strings", function () {
         assert.lengthOf(password(), 11);
     });
 });
+
+describe("to uppercase", function () {
+    it("password should return the first letter capitalized", function () {
+        assert.match(password(), /H/);
+    });
+});
+
+// expect('foobar').to.match(/^foo/);
