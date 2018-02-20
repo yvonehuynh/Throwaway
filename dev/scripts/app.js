@@ -8,7 +8,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
-const userAccount = signIn();
+signIn();
 
 function runRequest() {
   return axios.get(`https://baconipsum.com/api/?type=all-meat&sentences=10&start-with-lorem=1`)
@@ -71,19 +71,21 @@ document.getElementById("generateUsername").addEventListener("click", function(e
   runRequest();
 })
 
-document.getElementById("save").addEventListener("click", function(e){
-  e.preventDefault();
- const username = document.getElementById("username").innerHTML;
- const password = document.getElementById("password").innerHTML;
-  const throwawayDetails={
-    username,
-    password
-  }
-  const dbRef = firebase.database().ref(`user/${userAccount}/`);
-  dbRef.push(throwawayDetails)
-})
+function saveAccount(userAccount){
+  document.getElementById("save").addEventListener("click", function(e){
+    e.preventDefault();
+  const username = document.getElementById("username").innerHTML;
+  const password = document.getElementById("password").innerHTML;
+    const throwawayDetails={
+      username,
+      password
+    }
+    const dbRef = firebase.database().ref(`user/${userAccount}/`);
+    dbRef.push(throwawayDetails)
+  })
+};
 
-function displayFav() {
+function displayFav(userAccount) {
   const dbRef = firebase.database().ref(`user/${userAccount}/`).limitToLast(5);
   dbRef.on("value", (firebaseData) => {
     document.getElementById("displayUsername").innerHTML = "";
@@ -108,7 +110,6 @@ function displayFav() {
   });
 }
 
-displayFav();
 
 // when user opens saved accounts aside, turn label colour orange
 // else, leave it white
@@ -126,6 +127,9 @@ document.getElementById("create-user").addEventListener("click", function(e){
   if (newUserPassword === confirmPassword) {
   firebase.auth().createUserWithEmailAndPassword(newUserEmail, newUserPassword)
   .then(function(){
+    const user = firebase.auth().currentUser["uid"];
+    saveAccount(user)
+    displayFav(user)
     allowSave();
     toggleDisplay();
   })
@@ -133,10 +137,7 @@ document.getElementById("create-user").addEventListener("click", function(e){
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-  })
-  } else {
-      alert("passwords must match")
-    };
+  })}
 })
 
 // sign in
@@ -147,6 +148,9 @@ function signIn(){
     const currentUserPassword = document.getElementById("current-password").value;
     firebase.auth().signInWithEmailAndPassword(currentUserEmail, currentUserPassword)
     .then(function () {
+      const user = firebase.auth().currentUser["uid"];
+      saveAccount(user)
+      displayFav(user)
       allowSave();
       toggleDisplay();
     })
@@ -155,13 +159,6 @@ function signIn(){
       var errorCode = error.code;
       var errorMessage = error.message;
     });
-    var user = firebase.auth().currentUser;
-
-    if (user) {
-      return user
-    } else {
-      // No user is signed in.
-    }
   })
 };
 // signIn();
@@ -179,6 +176,8 @@ function disableSave() {
   const savedAccountLabel = document.getElementById("label");
   saveAccount.style.display = "none";
   savedAccountLabel.style.display = "none";
+  const username = document.getElementById("username").innerHTML = "";
+  const password = document.getElementById("password").innerHTML = "";
 };
 
 // user can use the webpage without account
@@ -196,8 +195,10 @@ const toggleDisplay = ()=>{
   document.querySelector('.authentication').classList.toggle('showMe');
 };
 
-
+const signOut=()=>{
   document.getElementById("sign-out").addEventListener("click", function(){
     firebase.auth().signOut();
     disableSave();
   });
+}
+signOut();
